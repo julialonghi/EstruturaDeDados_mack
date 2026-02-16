@@ -8,20 +8,20 @@ public class Boletim {
         this.notas = notas;
     }
 
-    public void mediaAluno(int a) {
+    public double mediaAluno(int a) {
         double soma = 0;
         for (int j = 0; j < notas[a].length; j++) {
             soma += notas[a][j];
         }
-        System.out.println(soma / notas[a].length);
+        return soma / notas[a].length;
     }
 
-    public void mediaProva(int p) {
+    public double mediaProva(int p) {
         double soma = 0;
         for (int i = 0; i < notas.length; i++) {
             soma += notas[i][p];
         }
-        System.out.println(soma / notas.length);
+        return soma / notas.length;
     }
 
     public static void main(String[] args) {
