@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class ControleEstoque {
-    int[][] estoque;
+    private int[][] estoque;
     public ControleEstoque(int[][] estoque) {
         this.estoque = estoque;
     }
