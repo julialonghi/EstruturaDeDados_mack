@@ -2,11 +2,12 @@
 //com objetos do tipo Candidato a um concurso musical armazenados em um vetor.
 //Autor Professor: Ivan Carlos Alcântara de Oliveira./Alcides Teixeira Barboza Junior
 //Data da Criação: 10/02/2026. 15h.
-//Autor Aluno: <COLOQUE AQUI O SEU NOME E RA>
-//Data da Atualização: <DATA DA IMPLEMENTAÇÃO DOS MÉTODOS SOLICITADOS>
+//Autor Aluno: Júlia Oliveira Longhi RA: 10736801
+//Data da Atualização: 03/03/2026
+import java.util.Scanner;
 public class __OrdenacaoEBusca {
 	// Objeto de leitura
-//    private Scanner ler = new Scanner(System.in); 
+    private Scanner ler = new Scanner(System.in); 
 	// constante com o total de candidatos
 	public static final int MAX_CANDIDATOS = 15;
 	// Indica o total de candidados criados
@@ -30,7 +31,7 @@ public class __OrdenacaoEBusca {
 	    criarCadastroCandidatos(candidatos);
 	    // Mostra todos os candidatos cadastrados na ordem do cadastro
 	    mostrarTodosOsCandidatos(candidatos);
-/*	    
+	    
 	    // Procura um candidato pelo nome em um vetor não ordenado
 	    System.out.println("Forneça o nome do candidato: ");
 	    String nomeCandidato = ler.nextLine();
@@ -65,7 +66,7 @@ public class __OrdenacaoEBusca {
 	    insertionSort(candidatos);
 	    // Mostra os candidatos ordenados por idade
 	    mostrarTodosOsCandidatos(candidatos);
-*/
+
 	}
 	
     // Método encarregado de criar objetos da classe Candidato
@@ -87,7 +88,7 @@ public class __OrdenacaoEBusca {
     	candidatos[9] = new Candidato(9999, "999.999.999-99", "Luis Alberto C.", 18, 'M', "rap");
        	tot_candidatos = 15;
     	// Criar a partir daqui mais 5 objetos da classe candidato
-		candidatos[10] = new Candidato(0101, "010.010.010-11", "Anna", 18, 'F', "rock");
+		candidatos[10] = new Candidato(1101, "100.010.010-11", "Anna", 18, 'F', "rock");
        	candidatos[11] = new Candidato(2121, "121.121.121-22", "Joao", 21, 'M', "romantica");
        	candidatos[12] = new Candidato(4343, "434.434.434-44", "Luiz", 22, 'M', "rock");
        	candidatos[13] = new Candidato(5656, "565.565.565-55", "Elsa", 54, 'F', "sertanejo");
@@ -114,21 +115,21 @@ public class __OrdenacaoEBusca {
     // armazenado em um vetor (ordenado ou não)
     // tendo como chave o nome do candidato.	
 	public Candidato pesquisaSequencial(String nomeCandidato, Candidato[] cand) {
-		for (int i = 0; i <= cand.length; i++) {
+		for (int i = 0; i < tot_candidatos; i++) {
 			String nome = cand[i].getNome();
 			if(nome.equals(nomeCandidato)) {
 				return cand[i];
 			}
 		}
 		return null;
-	};
+	}
     
     // Método encarregado de pesquisar um candidato 
     // armazenado em um vetor ordenado
     // tendo como chave o número do candidato.
     public Candidato pesquisaBinaria(int chave, Candidato[] cand) {
     	int first = 0;
-		int last = cand.length;
+		int last = tot_candidatos - 1;
 		while (first <= last) {
 			int middle = (first + last)/2;
 			int num_cand = cand[middle].getNumero_candidato();
@@ -146,21 +147,51 @@ public class __OrdenacaoEBusca {
     // Método encarregado de ordenar os Candidatos 
     // armazenados em um vetor pelo número do candidato.
     public void selectionSort(Candidato cand[]) {
-    	for (int i = cand.length; i > 0; i--) {
-			
+    	for (int i = tot_candidatos - 1; i > 0; i--) {
+			int indCand = 0;
+			for (int j = 1; j <= i; j++) {
+				if (cand[j].getNumero_candidato() >
+					cand[indCand].getNumero_candidato()) {
+					indCand = j;
+				}
+			}
+			Candidato temp = cand[indCand];
+			cand[indCand] = cand[i];
+			cand[i] = temp;
 		}
     }
  
     // Método encarregado de ordenar os Candidatos 
     // armazenados em um vetor pela idade do candidato.
     public void insertionSort(Candidato[] cand) {
-    	// Seu código deve ser desenvolvido aqui
+    	for (int j = 1; j < tot_candidatos; j++) {
+			Candidato chave = cand[j];
+			int i = j - 1;
+			while (i >= 0 && cand[i].getIdade() > chave.getIdade()) {
+				cand[i+1] = cand[i];
+				i --;
+			}
+			cand[i+1] = chave;
+		}
     }
     
     // Método encarregado de ordenar os Candidatos 
     // armazenados em um vetor pelo nome do candidato.
     public void bubbleSort(Candidato[] cand) {
-    	// Seu código deve ser desenvolvido aqui
+    	for (int i = 0; i < tot_candidatos - 1; i++) {
+
+			for (int j = 0; j < tot_candidatos - 1 - i; j++) {
+
+				String nome1 = cand[j].getNome().toLowerCase();
+				String nome2 = cand[j + 1].getNome().toLowerCase();
+
+				if (nome1.charAt(0) > nome2.charAt(0)) {
+
+					Candidato aux = cand[j];
+					cand[j] = cand[j + 1];
+					cand[j + 1] = aux;
+				}
+			}
+		}
     }
-    
-  }
+}
