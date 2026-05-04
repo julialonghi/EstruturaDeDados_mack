@@ -1,3 +1,5 @@
+package TesteABB;
+
 public class Funcionario implements Comparable<Funcionario> {
     private int id;
     private char categoria;
@@ -5,7 +7,17 @@ public class Funcionario implements Comparable<Funcionario> {
     private String cargo;
     private char sexo;
     private int idade;
-    private float salario;
+    private double salario;
+
+    public Funcionario(int id, char categoria, String nome, String cargo, char sexo, int idade, double salario) {
+        this.id = id;
+        this.categoria = categoria;
+        this.nome = nome;
+        this.cargo = cargo;
+        this.sexo = sexo;
+        this.idade = idade;
+        this.salario = salario;
+    }
 
     public int getId() {
         return id;
@@ -43,11 +55,25 @@ public class Funcionario implements Comparable<Funcionario> {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    public float getSalario() {
+    public double getSalario() {
         return salario;
     }
-    public void setSalario(float salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + id +
+            " | Nome: " + nome +
+            " | Cargo: " + cargo +
+            " | Idade: " + idade +
+            " | Sexo: " + sexo +
+            " | Categoria: " + categoria +
+            " | Salário: " + salario;
+    }
+    @Override
+    public int compareTo(Funcionario o) {
+        return Integer.compare(this.id, o.id);
+    }
 }

@@ -66,8 +66,10 @@ public class ABB<T extends Comparable<T>> {
 
         if (compara(novo.getValue(), atual.getValue()) < 0) {
             atual.setFilhoEsquerdo(inserir(novo, atual.getFilhoEsquerdo()));
-        } else {
+        } else if (compara(novo.getValue(), atual.getValue()) > 0){
             atual.setFilhoDireito(inserir(novo, atual.getFilhoDireito()));
+        } else {
+            return atual;
         }
 
         return atual;
@@ -344,4 +346,61 @@ public class ABB<T extends Comparable<T>> {
             return null;
         }
     }  
+
+    public double totalSalarios(Node<T> no) {
+        if (no == null) {
+            return 0;
+        }
+        Funcionario f = (Funcionario) no.getValue();
+        
+        return totalSalarios(no.getFilhoEsquerdo())
+                + f.getSalario()
+                + totalSalarios(no.getFilhoDireito());
+    }
+
+    public int contarPorSexo(Node<T> no, char sexo) {
+        if (no == null) {
+            return 0;
+        }
+        Funcionario f = (Funcionario) no.getValue();
+
+        int cont = 0;
+        if (Character.toUpperCase(f.getSexo()) == Character.toUpperCase(sexo)) {
+            cont = 1;
+        }
+
+        return contarPorSexo(no.getFilhoEsquerdo(), sexo)
+                + cont
+                + contarPorSexo(no.getFilhoDireito(), sexo);
+    }
+
+    public int contarPorCategoria(Node<T> no, char categoria) {
+        if (no == null) {
+            return 0;
+        }
+        Funcionario f = (Funcionario) no.getValue();
+
+        int cont = 0;
+        if (Character.toUpperCase(f.getCategoria()) == Character.toUpperCase(categoria)) {
+            cont = 1;
+        }
+
+        return contarPorCategoria(no.getFilhoEsquerdo(), categoria)
+                + cont
+                + contarPorCategoria(no.getFilhoDireito(), categoria);
+    }
+
+    public void mostrarPorIdade(Node<T> no, int idade) {
+        if (no != null) {
+
+            mostrarPorIdade(no.getFilhoEsquerdo(), idade);
+
+            Funcionario f = (Funcionario) no.getValue();
+            if (f.getIdade() >= idade) {
+                System.out.println(f);
+            }
+
+            mostrarPorIdade(no.getFilhoDireito(), idade);
+        }
+    }
 }
