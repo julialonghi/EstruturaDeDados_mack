@@ -28,7 +28,7 @@ public class TesteABB {
                                 "\n2- Mostrar dados de todos os funcionários cadastrados" +
                                 "\n3- Mostrar gastos com salários dos funcionários" +
                                 "\n4- Mostrar total de funcionários de determinado sexo" +
-                                "\n5- Mostrar quantidade de funcionários de certa de categoria" +
+                                "\n5- Mostrar quantidade de funcionários de certa categoria" +
                                 "\n6- Mostrar dados de funcionários a partir de certa idade" +
                                 "\n7- Simular cadastro de funcionários" +
                                 "\n8- Sair\n");
@@ -38,7 +38,6 @@ public class TesteABB {
                                 Funcionario func = cadastro();
                                 abb2.inserir(func);
                         } else if (opcao == 2) {
-                                Scanner sc = new Scanner(System.in);
                                 abb2.emOrdem2();
                         } else if (opcao == 3) {
                                 double total = abb2.totalSalarios(abb2.getRaiz());
