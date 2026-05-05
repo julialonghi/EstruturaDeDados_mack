@@ -1,5 +1,18 @@
 package TesteABB;
-
+//Classe Teste: encarregada de manipular a estrutura de dados
+//árvore de busca binária (ABB) genérica.
+//
+//Autor1: Ivan Carlos / Alcides / Charles
+//Data da Criação: 04/14/2026. 15h.
+//
+// Adaptação
+//
+// Classe TesteABB: encarregada de manipular o sistema de cadastro de funcionários,
+// permitindo operações como inserção, listagem e análise de dados utilizando uma
+// ABB genérica.
+//
+// Autor: Julia Oliveira Longhi
+// Data: 28/04/2026
 import java.util.Scanner;
 
 public class TesteABB {
@@ -51,7 +64,6 @@ public class TesteABB {
                                 abb2.mostrarPorIdade(abb2.getRaiz(), idade);
                         }
                         else if (opcao == 7) {
-                                abb2.setRaiz(null);
                                 simularCadastro(abb2);
                                 System.out.println("\nFuncionários cadastrados com sucesso.");
                         } else if (opcao == 8) {
@@ -71,26 +83,26 @@ public class TesteABB {
         }
 
         public static Funcionario cadastro() {
-                System.out.println("ID: ");
+                System.out.println("-> ID: ");
                 int id = sc.nextInt();
                 sc.nextLine();
 
-                System.out.println("Categoria: P – Presencial, O – Home Office, H – Híbrido");
+                System.out.println("-> Categoria: P – Presencial, O – Home Office, H – Híbrido");
                 char categoria = sc.nextLine().charAt(0);
 
-                System.out.println("Nome: ");
+                System.out.println("-> Nome: ");
                 String nome = sc.nextLine();
 
-                System.out.println("Cargo: ");
+                System.out.println("-> Cargo: ");
                 String cargo = sc.nextLine();
 
-                System.out.println("Sexo: F – feminino, M – masculino");
+                System.out.println("-> Sexo: F – feminino, M – masculino");
                 char sexo = sc.nextLine().charAt(0);
 
-                System.out.println("Idade: ");
+                System.out.println("-> Idade: ");
                 int idade = sc.nextInt();
 
-                System.out.println("Salário: ");
+                System.out.println("-> Salário: ");
                 double sal = sc.nextDouble();
 
                 Funcionario func = new Funcionario(id, categoria, nome, cargo, sexo, idade, sal);

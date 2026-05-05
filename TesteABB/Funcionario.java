@@ -1,5 +1,12 @@
 package TesteABB;
-
+// Classe Funcionario: encarregada de manipular um objeto do tipo Funcionario
+// contendo os atributos: id, nome, cargo, sexo, categoria, idade e salario.
+//
+// Implementa a interface Comparable para permitir a ordenação
+// dos objetos na ABB.
+//
+// Autor: Julia Oliveira Longhi
+// Data: 28/04/2026
 public class Funcionario implements Comparable<Funcionario> {
     private int id;
     private char categoria;
@@ -72,6 +79,8 @@ public class Funcionario implements Comparable<Funcionario> {
             " | Categoria: " + categoria +
             " | Salário: " + salario;
     }
+
+    // Compara funcionários pelo ID para manter a ordenação na ABB
     @Override
     public int compareTo(Funcionario o) {
         return Integer.compare(this.id, o.id);

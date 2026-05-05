@@ -5,6 +5,12 @@ package TesteABB;
 //
 //Autor1: Ivan Carlos / Alcides / Charles
 //Data da Criação: 04/14/2026. 15h.
+
+// Adaptação realizada para trabalhar com objetos do tipo Funcionario,
+// permitindo operações como soma de salários e filtros.
+//
+// Autor: Julia Oliveira Longhi
+// Data: 04/05/2026
 public class ABB<T extends Comparable<T>> {   
 
     private Node<T> raiz; // Nó raiz da ABB
@@ -59,6 +65,7 @@ public class ABB<T extends Comparable<T>> {
 
     // Método que realiza a inserção de um novo nó (novo) 
     // na ABB 
+    // Alteração: não permite inserção de elementos duplicados (mesmo ID)
     private Node<T> inserir(Node<T> novo, Node<T> atual) {
         if (atual == null) {
             return novo;
@@ -347,6 +354,7 @@ public class ABB<T extends Comparable<T>> {
         }
     }  
 
+    // Método que percorre a ABB e calcula o total gasto com salários dos funcionários
     public double totalSalarios(Node<T> no) {
         if (no == null) {
             return 0;
@@ -358,6 +366,7 @@ public class ABB<T extends Comparable<T>> {
                 + totalSalarios(no.getFilhoDireito());
     }
 
+    // Método que percorre a ABB e calcula o total de funcionários dependendo do sexo informado
     public int contarPorSexo(Node<T> no, char sexo) {
         if (no == null) {
             return 0;
@@ -374,6 +383,7 @@ public class ABB<T extends Comparable<T>> {
                 + contarPorSexo(no.getFilhoDireito(), sexo);
     }
 
+    // Método que percorre a ABB calcula o total de funcionários por categoria escolhida
     public int contarPorCategoria(Node<T> no, char categoria) {
         if (no == null) {
             return 0;
@@ -390,9 +400,9 @@ public class ABB<T extends Comparable<T>> {
                 + contarPorCategoria(no.getFilhoDireito(), categoria);
     }
 
+    // Método que percorre a ABB e imprime os funcionários a partir da idade especificada
     public void mostrarPorIdade(Node<T> no, int idade) {
         if (no != null) {
-
             mostrarPorIdade(no.getFilhoEsquerdo(), idade);
 
             Funcionario f = (Funcionario) no.getValue();
